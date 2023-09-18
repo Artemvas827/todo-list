@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import { TodoList } from './components/TodoList/TodoList'
+import { AddTodo } from './components/AddTodo/AddTodo'
+import { useLocalStorage } from 'usehooks-ts'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export type TodoType = {
+  id: number
+  title: string | undefined
+  status: boolean
 }
 
-export default App;
+export const App = () => {
+  const [todos, setTodos] = useLocalStorage<Array<TodoType>>('todos', [])
+
+  return (
+    <div className="wrap">
+      <AddTodo setTodos={setTodos} todos={todos} />
+      <TodoList setTodos={setTodos} todos={todos} />
+    </div>
+  )
+}

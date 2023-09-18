@@ -1,0 +1,14 @@
+.todoList {
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.noTodos {
+  display: flex;
+  justify-content: center;
+  color: darkgray;
+}
